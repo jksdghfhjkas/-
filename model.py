@@ -5,10 +5,11 @@ from keras.utils import to_categorical
 from sklearn.utils.class_weight import compute_class_weight
 from keras.models import load_model
 import numpy as np
+from numpy import ndarray
 
 
 class LSTMmodel:
-    def __init__(self, model=None):
+    def __init__(self, model: str | None = None):
         self.batch_size = 50
         self.epochs = 50
 
@@ -59,7 +60,7 @@ class LSTMmodel:
         return model
     
 
-    def push_data(self, data):
+    def push_data(self, data: ndarray) -> ndarray:
         """
         отправка данных
         """
@@ -68,7 +69,7 @@ class LSTMmodel:
         return state
     
     
-    def test_model_states(self, X):
+    def test_model_states(self, X: ndarray) -> ndarray:
         """
         прогоняем данные и получаем массив состояний
         """
@@ -78,7 +79,7 @@ class LSTMmodel:
 
 
 
-    def test_model_evaluation(self, X, Y):
+    def test_model_evaluation(self, X: ndarray, Y: ndarray):
         """
         просто прогонка тестовых данных для проверки модели
         """
@@ -86,7 +87,7 @@ class LSTMmodel:
         print(str(evaluation))
 
 
-    def education(self, X, Y, filename="v3"):
+    def education(self, X: ndarray, Y: ndarray, filename: str = "v3"):
 
         class_weights = {
             0: 0.5,  # Движение - маленькая важность
@@ -95,7 +96,6 @@ class LSTMmodel:
             3: 2.0,  # Отпуск - высокая важность
             4: 2.0   # Стабилизация - высокая важность
         }
-
 
         history = self.model.fit(
             x=X,

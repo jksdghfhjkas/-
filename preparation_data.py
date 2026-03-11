@@ -60,7 +60,7 @@ class PreparationData:
         return z, z1, z2
 
 
-    def __parsing_file(self, filename):
+    def __parsing_file(self, filename: str):
         with open(f"education_data/{filename}", "r") as file:
             data = json.load(file)
             # pm = data.get("pm") 
@@ -72,7 +72,7 @@ class PreparationData:
         return tm, states
     
     
-    def data_push_batch(self, tm, filename):
+    def data_push_batch(self, tm: list | ndarray, filename: str) -> ndarray:
         """
         получает на вход окно, нормализует и формирует данные
         filename - это файл с параметрами нормализаций
@@ -91,7 +91,7 @@ class PreparationData:
         return np.array(result)
     
     
-    def data_push(self, tm, filename):
+    def data_push(self, tm: list | ndarray, filename: str) -> ndarray:
         """
         работает со всеми данными полученными
         filename - это файл с параметрами нормализаций
@@ -117,7 +117,7 @@ class PreparationData:
         return np.array(result_x)
 
 
-    def data_education(self, filename):
+    def data_education(self, filename: str):
         """
         возврящает пачки по 5 элементов для обучения
         filename - это подготовленный файл с данными для обучения

@@ -3,6 +3,7 @@ import pandas
 from model import LSTMmodel
 from preparation_data import PreparationData
 import numpy as np
+from numpy import ndarray
 
 
 
@@ -13,7 +14,7 @@ import numpy as np
 """
 
 class TestModel_and_ShowData:
-    def __init__(self, filename):
+    def __init__(self, filename: str):
         self.filename = filename
         self.model = LSTMmodel("v2.keras")
         self.preparation_data = PreparationData()
@@ -29,7 +30,7 @@ class TestModel_and_ShowData:
         self.ax.grid(True)
 
 
-    def __parsing_file(self):
+    def __parsing_file(self) -> list:
         data_set = pandas.read_excel(f"excel_data/{self.filename}", usecols="A:D")
 
         data_set.columns = ["A", "B", "C", "D"]
@@ -44,7 +45,7 @@ class TestModel_and_ShowData:
         return data[1]
 
 
-    def __get_states(self):
+    def __get_states(self) -> ndarray:
         """
         тут мы данные отправляет на классификацию нейронке
         """
@@ -75,3 +76,5 @@ class TestModel_and_ShowData:
 if __name__ == "__main__":
     show = TestModel_and_ShowData("торможение.xlsx")
     show.show()
+
+    
